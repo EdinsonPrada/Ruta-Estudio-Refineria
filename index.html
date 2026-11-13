@@ -107,6 +107,16 @@ ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
 .check.on span{color:var(--done)}
 .deliv{border:2px solid var(--accent)}
 .deliv.on{border-color:var(--done);background:var(--done-soft)}
+h4{font-family:var(--display);font-size:19px;font-weight:600;margin:6px 0 0;line-height:1.15}
+ol.plain{padding-left:22px}
+.defs{display:flex;flex-direction:column}
+.def{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-top:1px solid var(--line)}
+.def:first-child{border-top:0}
+.dn{font-weight:600}
+.dv{font-family:var(--mono);font-size:13px;color:var(--accent);text-align:right;max-width:150px}
+.dw{grid-column:1 / -1;font-size:15px;color:var(--muted)}
+.note{font-size:14px;color:var(--muted);border-left:3px solid var(--line);padding-left:10px}
+.check b{font-weight:600}
 textarea{width:100%;min-height:110px;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:10px;resize:vertical}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (prefers-reduced-motion: reduce){.seg i,.bar i{transition:none}}
@@ -208,6 +218,202 @@ var BLOCKS = [
   checkTitle:"Autoevaluación",
   checks:["Interpreto un precio sombra como el valor de aliviar una restricción.","Explico por qué el octano y la presión de vapor no se mezclan linealmente.","Identifico cuál restricción está activa en mi caso óptimo y qué equipo la impone.","Cuantifico en dinero un ahorro de combustible del horno."]}
 ];
+
+/* ---------- contenido de referencia por bloque ---------- */
+BLOCKS[0].extras = [
+ {title:"Operaciones unitarias", intro:"Catálogo completo para estudiar junto con las semanas 2, 7 y 8. Marca cada una cuando puedas explicar su principio y ubicarla en una refinería.",
+  parts:[
+   {sub:"Flujo de fluidos y operaciones mecánicas", checks:[
+    ["b1u1","Bombeo","Impulsar líquidos. Bombas de carga de crudo y de fondos de torre."],
+    ["b1u2","Compresión","Elevar la presión de gases. Compresor de gas húmedo de FCC y de hidrógeno de reciclo."],
+    ["b1u3","Mezcla y agitación","Homogeneizar corrientes. Mezcla de gasolinas y válvula de mezcla del desalador."],
+    ["b1u4","Sedimentación y decantación","Separar fases por densidad. Desalador, tambores trifásicos y separadores API."],
+    ["b1u5","Filtración","Retener sólidos. Filtros de carga a hidrotratamiento y de finos de catalizador."],
+    ["b1u6","Centrifugación y ciclones","Separar por fuerza centrífuga. Ciclones del reactor y regenerador de FCC."],
+    ["b1u7","Fluidización","Suspender sólidos en un gas. Lecho de catalizador de FCC y coquización fluida."],
+    ["b1u8","Transporte y manejo de sólidos","Mover y almacenar sólidos. Circulación de catalizador, coque y azufre sólido."],
+    ["b1u9","Reducción de tamaño y tamizado","Moler y clasificar sólidos. Corte y clasificación del coque de petróleo."]
+   ]},
+   {sub:"Transferencia de calor", checks:[
+    ["b1u10","Intercambio de calor","Recuperar calor entre corrientes. Tren de precalentamiento de crudo."],
+    ["b1u11","Calentamiento a fuego directo","Hornos de proceso. Horno atmosférico, de vacío y de reformado."],
+    ["b1u12","Condensación","Pasar vapor a líquido. Condensadores de cima y condensadores de azufre."],
+    ["b1u13","Ebullición y rehervido","Generar vapor en el fondo de una torre. Rehervidores de estabilizadoras y regeneradoras de amina."],
+    ["b1u14","Evaporación","Concentrar una solución. Tratamiento de salmueras y efluentes."],
+    ["b1u15","Enfriamiento por aire y por agua","Rechazar calor al ambiente. Aeroenfriadores y torres de enfriamiento."],
+    ["b1u16","Generación de vapor","Recuperar calor como vapor. Calderas y calderas de calor residual."]
+   ]},
+   {sub:"Transferencia de masa", checks:[
+    ["b1u17","Destilación","Separar por volatilidad. Torres atmosférica, de vacío y fraccionadoras."],
+    ["b1u18","Absorción","Retirar un componente de un gas con un líquido. Endulzamiento con amina."],
+    ["b1u19","Despojamiento","Retirar livianos de un líquido con vapor o gas. Despojadores laterales y de aguas agrias."],
+    ["b1u20","Extracción líquido-líquido","Separar con un solvente. Extracción de aromáticos y desasfaltado con solvente."],
+    ["b1u21","Adsorción","Retener moléculas en un sólido. Purificación de hidrógeno por PSA y tamices moleculares."],
+    ["b1u22","Secado","Retirar humedad. Secado de gases y de aire de instrumentos."],
+    ["b1u23","Humidificación","Contacto aire-agua. Principio de la torre de enfriamiento."],
+    ["b1u24","Cristalización","Formar sólidos desde una solución. Desparafinado de bases lubricantes."],
+    ["b1u25","Separación por membranas","Permeación selectiva. Recuperación de hidrógeno y ósmosis inversa de agua."],
+    ["b1u26","Intercambio iónico","Retirar iones del agua. Desmineralización de agua de calderas."],
+    ["b1u27","Lixiviación","Extraer un soluto de un sólido. Lavado y recuperación de metales de catalizadores gastados."]
+   ]},
+   {sub:"Procesos con reacción química", checks:[
+    ["b1u28","Reactores catalíticos de lecho fijo","Hidrotratamiento, reformado e isomerización."],
+    ["b1u29","Reactores de lecho fluidizado","Craqueo catalítico fluidizado."],
+    ["b1u30","Reactores térmicos","Viscorreducción, coquización retardada y horno de reacción Claus."]
+   ], note:"La reacción química se clasifica como proceso unitario, no como operación unitaria; se incluye aquí porque completa el mapa de equipos de una refinería."}
+  ]}
+];
+BLOCKS[1].extras = [
+ {title:"Unidad de craqueo catalítico (FCC)", intro:"Convierte gasóleos pesados en gasolina, olefinas livianas y destilados. Estúdiala junto con las semanas 6 a 8 y el capítulo de craqueo catalítico de Gary.",
+  parts:[
+   {sub:"Proceso paso a paso", steps:[
+    "Carga: gasóleo de vacío, a veces con residuo, precalentado en intercambiadores y horno.",
+    "Elevador (riser): la carga se inyecta atomizada con vapor sobre catalizador regenerado caliente. Se vaporiza y craquea en pocos segundos mientras sube.",
+    "Separación: ciclones a la salida del elevador separan vapores y catalizador para detener el craqueo.",
+    "Despojador: vapor retira los hidrocarburos atrapados en el catalizador gastado antes de enviarlo al regenerador.",
+    "Regenerador: el coque depositado se quema con aire. Esa combustión entrega el calor que consume el elevador, por eso la unidad opera en balance térmico.",
+    "Fraccionadora principal: separa gas, nafta craqueada, aceite cíclico liviano, aceite cíclico pesado y fondos.",
+    "Planta de gas: compresor de gas húmedo, absorbedores y debutanizadora recuperan gas licuado y estabilizan la nafta.",
+    "Gases de combustión: recuperación de energía, caldera y remoción de finos antes de la chimenea."
+   ]},
+   {sub:"Parámetros de diseño y operación", rows:[
+    ["Temperatura de salida del elevador","500–540 °C","Define la severidad: más temperatura da más conversión, olefinas y gas seco."],
+    ["Relación catalizador/aceite","5–8 en peso","Resulta del balance térmico. Más circulación aumenta la conversión."],
+    ["Tiempo de residencia en el elevador","2–4 s","Suficiente para craquear sin sobrecraquear la gasolina."],
+    ["Temperatura de precalentamiento de carga","180–370 °C","Variable para mover la relación catalizador/aceite."],
+    ["Temperatura del regenerador","680–730 °C","Limitada por la metalurgia y la desactivación del catalizador."],
+    ["Presión de reactor y regenerador","1,5–3 bar man.","El diferencial de presión gobierna la circulación de catalizador."],
+    ["Carbón en catalizador regenerado","< 0,1 % peso","Indica la calidad de la regeneración y la actividad disponible."],
+    ["Oxígeno en gases de combustión","1–2 % vol","En combustión completa asegura quema total del monóxido de carbono."],
+    ["Vapor de despojamiento","2–5 kg por tonelada de catalizador","Poco vapor lleva hidrocarburo al regenerador y sube su temperatura."],
+    ["Conversión","70–80 % vol","Resultado global frente a calidad de carga y severidad."],
+    ["Actividad y metales del catalizador","Según carga","Níquel y vanadio aumentan hidrógeno y coque; se controlan con reposición."]
+   ], note:"Restricciones habituales: capacidad del soplador de aire, compresor de gas húmedo, temperatura del regenerador, velocidad en ciclones e inundación de la fraccionadora. Los valores son rangos típicos de referencia; confírmalos con Gary y con los datos de diseño de la unidad."}
+  ]},
+ {title:"Unidad recuperadora de azufre (Claus)", intro:"Convierte el sulfuro de hidrógeno de los gases ácidos en azufre elemental. Recibe gas ácido de las regeneradoras de amina y de la despojadora de aguas agrias.",
+  parts:[
+   {sub:"Proceso paso a paso", steps:[
+    "Horno de reacción: se quema un tercio del sulfuro de hidrógeno a dióxido de azufre con aire controlado. En la misma cámara ambos reaccionan y forman azufre; aquí ocurre del 60 al 70 % de la conversión.",
+    "Caldera de calor residual: enfría los gases y genera vapor de alta o media presión.",
+    "Primer condensador: condensa el azufre formado, que drena líquido a la fosa, y genera vapor de baja presión.",
+    "Recalentador: sube la temperatura del gas por encima del punto de rocío del azufre antes de cada lecho.",
+    "Convertidores catalíticos: dos o tres lechos de alúmina o titania continúan la reacción Claus a menor temperatura. Cada lecho va seguido de su condensador.",
+    "Tratamiento de gas de cola: hidrogena los compuestos de azufre restantes a sulfuro de hidrógeno y los recircula con amina.",
+    "Incinerador: oxida el azufre residual antes de la chimenea.",
+    "Fosa de azufre: almacena el azufre líquido y lo desgasifica para retirar el sulfuro de hidrógeno disuelto."
+   ]},
+   {sub:"Parámetros de diseño y operación", rows:[
+    ["Relación H2S/SO2 en gas de cola","2 a 1","Es la variable clave: se controla ajustando el aire con el analizador de gas de cola."],
+    ["Temperatura del horno de reacción","1.000–1.400 °C","Por encima de unos 1.250 °C destruye el amoníaco y los hidrocarburos de la carga."],
+    ["Tiempo de residencia en el horno","Alrededor de 1 s","Necesario para completar la reacción térmica y destruir contaminantes."],
+    ["Temperatura de entrada al primer lecho","230–250 °C","Más caliente para hidrolizar sulfuro de carbonilo y disulfuro de carbono."],
+    ["Temperatura de entrada a lechos siguientes","200–220 °C","Menor temperatura favorece el equilibrio; debe superar el punto de rocío del azufre."],
+    ["Temperatura de salida de condensadores","130–170 °C","Mantiene el azufre líquido y fluido sin arrastrarlo como vapor."],
+    ["Presión de entrada","0,5–0,7 bar man.","La unidad opera a baja presión; la caída de presión limita la capacidad."],
+    ["Recuperación con dos o tres lechos","94–98 %","Limitada por el equilibrio de la reacción."],
+    ["Recuperación con tratamiento de gas de cola","> 99,8 %","Necesaria para cumplir los límites de emisión de dióxido de azufre."],
+    ["Temperatura del azufre líquido","125–145 °C","Por encima de unos 160 °C la viscosidad sube bruscamente."]
+   ], note:"Parámetros de diseño adicionales: contenido de sulfuro de hidrógeno y amoníaco de la carga, generación de vapor y enriquecimiento con oxígeno para ganar capacidad. Los valores son rangos típicos de referencia; confírmalos con los datos de diseño de la unidad."}
+  ]}
+];
+BLOCKS[3].extras = [
+ {title:"Cómo analizar y reducir el consumo de vapor", intro:"Trabaja el sistema de vapor como una red: lo que ahorras en un usuario debe verse en la caldera, no en un venteo. Apóyate en los capítulos de sistemas de vapor y cogeneración de Robin Smith.",
+  parts:[
+   {sub:"Método", steps:[
+    "Arma el balance de vapor por cabezal (alta, media y baja presión): generación, consumidores, válvulas reductoras, turbinas y venteos.",
+    "Calcula el costo real de cada nivel de vapor, descontando la potencia que genera al expandirse en turbinas.",
+    "Usa la gran curva compuesta del análisis pinch para ver cuánto calor puede darse con vapor de baja en lugar de alta.",
+    "Busca las pérdidas: venteos de vapor de baja, trampas falladas, aislamiento dañado, condensado no recuperado y purgas altas.",
+    "Revisa a los grandes usuarios: vapor de despojamiento en torres, eyectores de vacío, rehervidores, turbinas y trazas de vapor.",
+    "Evalúa cada cambio en el modelo del sistema completo y prioriza por ahorro neto de combustible."
+   ]},
+   {sub:"Indicadores a seguir", rows:[
+    ["Venteo de vapor de baja presión","","Vapor generado y botado: señal de desbalance entre cabezales."],
+    ["Flujo por válvulas reductoras","","Oportunidad de generar potencia con una turbina en su lugar."],
+    ["Retorno de condensado","%","Cada punto recuperado ahorra agua, químicos y combustible."],
+    ["Purga de calderas","% del agua de alimentación","Depende de la calidad del agua; el exceso pierde calor y agua."],
+    ["Eficiencia de calderas","%","Se sigue con oxígeno y temperatura de gases de chimenea."],
+    ["Trampas de vapor falladas","% del inventario","Un programa de inspección periódica mantiene el valor bajo."],
+    ["Vapor de despojamiento","kg por m³ de producto","Ajústalo a la especificación del producto, no por costumbre."],
+    ["Vapor específico","t de vapor por t de carga","Indicador global por unidad para comparar contra su línea base."]
+   ]}
+  ]},
+ {title:"Cómo analizar y reducir el consumo de agua", intro:"El agua se optimiza reusándola en cascada: la salida de un usuario limpio alimenta a uno que tolera más contaminantes. Apóyate en el capítulo de diseño de sistemas de agua de Robin Smith.",
+  parts:[
+   {sub:"Método", steps:[
+    "Arma el balance de agua de la planta: captación, reposición a torres de enfriamiento, agua de calderas, agua de proceso, aguas agrias y efluentes.",
+    "Para cada usuario registra el caudal y la concentración máxima de contaminante que tolera a la entrada y a la salida.",
+    "Aplica el análisis pinch de agua: la curva límite fija el consumo mínimo de agua fresca posible con reúso.",
+    "Identifica reúsos directos: agua agria despojada como agua de lavado del desalador, condensado recuperado y purga de calderas hacia torres de enfriamiento.",
+    "Sube los ciclos de concentración de las torres de enfriamiento hasta el límite que permita el tratamiento químico.",
+    "Evalúa regeneración y reciclo: tratar un efluente para devolverlo como agua de reposición."
+   ]},
+   {sub:"Indicadores a seguir", rows:[
+    ["Agua fresca específica","m³ de agua por m³ de crudo","Indicador global de la refinería."],
+    ["Ciclos de concentración en torres","","Más ciclos reducen la purga y la reposición."],
+    ["Reposición a torres de enfriamiento","m³/h","Suele ser el mayor consumo de agua de la refinería."],
+    ["Agua de lavado del desalador","% del crudo","Suficiente para la remoción de sal sin exceso de efluente."],
+    ["Calidad del agua agria despojada","H2S y NH3 residuales","Define si puede reusarse en el desalador."],
+    ["Efluente tratado","m³ por m³ de crudo","Mide lo que no se pudo reusar."],
+    ["Retorno de condensado","%","Une el ahorro de agua con el de vapor."]
+   ]}
+  ]},
+ {title:"Variables de seguimiento para el punto óptimo de operación", intro:"El punto óptimo es el de mayor margen: producción valiosa menos costo variable, sin violar ninguna restricción. Sigue estas variables por unidad y compáralas contra tu modelo.",
+  parts:[
+   {sub:"Producción y calidad", rows:[
+    ["Carga a la unidad","% de la capacidad de diseño","Dilución de los costos fijos y cercanía a las restricciones."],
+    ["Rendimiento por producto","% vol frente al plan","Detecta degradación de productos valiosos a corrientes de menor precio."],
+    ["Regalo de calidad","Margen frente a la especificación","Octano, azufre o punto final mejores que la especificación cuestan dinero."],
+    ["Solape entre cortes","Diferencia de curvas de destilación","Mide la calidad del fraccionamiento."],
+    ["Conversión","%","En FCC, hidrocraqueo y coquización."]
+   ]},
+   {sub:"Energía y servicios", rows:[
+    ["Consumo específico de energía","GJ por m³ de carga","Indicador principal de gasto energético."],
+    ["Temperatura de entrada al horno","°C","Refleja el desempeño del tren de precalentamiento; cada grado ahorra combustible."],
+    ["Eficiencia de hornos","Oxígeno y temperatura de chimenea","Controla el exceso de aire."],
+    ["Ensuciamiento de intercambiadores","Coeficiente global frente al limpio","Define cuándo conviene limpiar."],
+    ["Vapor, electricidad y agua específicos","Por unidad de carga","Compara contra la línea base de cada unidad."],
+    ["Quema en tea y pérdidas","% de la carga","Hidrocarburo que se compra y no se vende."]
+   ]},
+   {sub:"Restricciones activas", rows:[
+    ["Inundación de torres","% del límite","Limita carga y reflujo."],
+    ["Temperatura de piel de tubos","°C frente al máximo","Limita la severidad de los hornos."],
+    ["Apertura de válvulas de control","%","Una válvula totalmente abierta indica una restricción hidráulica."],
+    ["Carga de compresores y sopladores","% de la capacidad","Suele limitar FCC e hidroprocesamiento."],
+    ["Pureza y consumo de hidrógeno","","Limita la severidad del hidrotratamiento."]
+   ]},
+   {sub:"Costo y margen", rows:[
+    ["Margen bruto","Por barril de carga","Resultado final que se optimiza."],
+    ["Costo variable","Por barril de carga","Energía, catalizadores, químicos e hidrógeno."],
+    ["Consumo de catalizador y químicos","Por unidad de carga","Reposición en FCC, aminas, inhibidores."],
+    ["Factor de servicio","% del tiempo","Las paradas no programadas borran cualquier optimización."]
+   ]},
+   {sub:"Cómo usarlas", steps:[
+    "Define una línea base con datos estables de operación y con tu modelo de HYSYS.",
+    "Cada semana calcula la brecha entre lo real y lo que predice el modelo.",
+    "Identifica cuál restricción está activa y qué variable manipulada la acerca o la aleja.",
+    "Mueve una variable a la vez y cuantifica el efecto en margen, no solo en producción o en energía.",
+    "Actualiza la línea base cuando cambien la carga, los precios o el estado de los equipos."
+   ]}
+  ]}
+];
+function renderExtras(b){
+  if(!b.extras) return "";
+  var h = "";
+  b.extras.forEach(function(x){
+    h += '<section class="card stack"><h3>'+esc(x.title)+'</h3>';
+    if(x.intro) h += '<p>'+esc(x.intro)+'</p>';
+    x.parts.forEach(function(p){
+      if(p.sub) h += '<h4>'+esc(p.sub)+'</h4>';
+      if(p.steps){ h += '<ol class="plain">'; p.steps.forEach(function(s){ h += '<li>'+esc(s)+'</li>'; }); h += '</ol>'; }
+      if(p.rows){ h += '<div class="defs">'; p.rows.forEach(function(r){ h += '<div class="def"><span class="dn">'+esc(r[0])+'</span>'+(r[1] ? '<span class="dv">'+esc(r[1])+'</span>' : '')+'<span class="dw">'+esc(r[2])+'</span></div>'; }); h += '</div>'; }
+      if(p.checks){ h += '<div>'; p.checks.forEach(function(c){ var on = state.done[c[0]]; h += '<label class="check'+(on?' on':'')+'" for="c-'+c[0]+'"><input type="checkbox" id="c-'+c[0]+'" data-id="'+c[0]+'"'+(on?' checked':'')+'><span><b>'+esc(c[1])+'</b><br>'+esc(c[2])+'</span></label>'; }); h += '</div>'; }
+      if(p.note) h += '<p class="note">'+esc(p.note)+'</p>';
+    });
+    h += '</section>';
+  });
+  return h;
+}
 
 var LS_KEY = "ruta-refineria-v1";
 var state = {done:{}, notes:{}, start:""};
@@ -311,6 +517,7 @@ function renderBlock(b){
     h += '<label class="week'+(on?' on':'')+'" for="c-'+id+'"><input type="checkbox" id="c-'+id+'" data-id="'+id+'"'+(on?' checked':'')+'><span class="wk">S'+(i+1)+'</span><span class="wbody"><span class="wtitle">'+esc(w[0])+'</span><span class="wstudy">'+esc(w[1])+'</span><span class="wprob"><small>'+esc(b.probLabel)+'</small>'+esc(w[2])+'</span></span></label>';
   });
   h += '</div></section>';
+  h += renderExtras(b);
   var eid = b.id+"e", eon = state.done[eid];
   h += '<section class="card deliv stack'+(eon?' on':'')+'" id="deliv-'+b.id+'"><h3>Entregable</h3><label class="check'+(eon?' on':'')+'" for="c-'+eid+'"><input type="checkbox" id="c-'+eid+'" data-id="'+eid+'"'+(eon?' checked':'')+'><span>'+esc(b.deliv)+'</span></label></section>';
   h += '<section class="card stack"><h3>'+esc(b.checkTitle)+'</h3><div>';

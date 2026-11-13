@@ -1,6 +1,6 @@
 // Service worker: deja la app disponible sin conexión.
 // Cambia el número de versión cada vez que subas cambios a GitHub.
-const CACHE = "ruta-refineria-v1";
+const CACHE = "ruta-refineria-v2";
 const FILES = ["./", "index.html", "manifest.webmanifest", "icons/icon-180.png", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {
